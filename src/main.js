@@ -4,12 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router, //我们所有的组件内部都可以使用this.$router和this.$route
   components: { App },
   template: '<App/>'
 })
