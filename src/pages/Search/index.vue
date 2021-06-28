@@ -1,5 +1,5 @@
 <template>
-    <div>Search</div>
+    <TypeNav></TypeNav>
 </template>
 
 <script>

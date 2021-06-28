@@ -2,7 +2,10 @@
   <div id="app">
     <Header></Header>
     <router-view/>
-    <Footer></Footer>
+    <!-- 在路由中配置meta -->
+    <Footer v-show="!$route.meta.isHidden"></Footer>
+    <!-- 不够优雅，如果有很对，代码会写的很长 -->
+    <!-- <Footer v-show="$route.path!=='/login' && $route.path!=='/register'"></Footer> -->
   </div>
 </template>
 
