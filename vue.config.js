@@ -9,7 +9,8 @@ module.exports = {
             "/api": {
                 //转发的目标服务器地址
                // target: "http://182.92.128.115",
-                  target:"http://123.57.205.78"
+                  target:"http://39.98.123.211"
+                 
                   
                 //是否把路径中的api去掉替换成空串，要看接口api
                 // pathRewrite:{"^/api":""}

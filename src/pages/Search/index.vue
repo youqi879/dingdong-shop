@@ -168,6 +168,8 @@ export default {
     };
   },
   beforeMount() {
+    //在点击三级分类或者点击搜索按钮跳过来发出请求的时候
+    //把对应的三级分类名称和id或者关键字keyword拿到添加到data当前中searchParams对应的搜索项中
     this.handlerSearchParams();
   },
   mounted() {
@@ -176,6 +178,7 @@ export default {
   },
   methods: {
     getGoodsListInfo() {
+      //dispach只能传递一个参数，传两个参数只能包裹在一个对象里面
       this.$store.dispatch("getGoodsListInfo", this.searchParams);
     },
     //请求前处理params和query参数
@@ -206,13 +209,13 @@ export default {
     //点击面包屑当中的关闭× categoryName，删除参数当中的categoryName 重新发请求
     removeCategoryName() {
       this.searchParams.pageNo = 1;
-      this.searchParams.categoryName = undefined;
+      this.searchParams.categoryName = undefined;//分类删了就没有query参数
       this.$router.push({ name: "search", params: this.$route.params });
     },
     //点击面包屑当中的关闭× keyword 删除参数当中的keyword 重新发请求
     removeKeyword() {
       this.searchParams.pageNo = 1;
-      this.searchParams.keyword = undefined;
+      this.searchParams.keyword = undefined;//关键字删了就没有params参数
       this.$router.push({ name: "search", query: this.$route.query });
     },
     //子向父传递品牌数据，按照品牌搜索
@@ -230,7 +233,9 @@ export default {
     //子向父传递属性数据，按照属性搜索
     searchForProps(attr, attrValue) {
       let porp = `${attr.attrId}:${attrValue}:${attr.attrName}`;
+      //检查是否重复
       let repeat = this.searchParams.props.some((item) => item === porp);
+      //如果重复的话，直接return,否则往下执行
       if (repeat) return;
       this.searchParams.pageNo = 1;
       this.searchParams.props.push(porp);
@@ -267,11 +272,6 @@ export default {
       this.searchParams.pageNo = page;
       this.getGoodsListInfo();
     },
-
-
-
-
-
 
     // getLogin(){
     //   this.$store.dispatch('getLogin')

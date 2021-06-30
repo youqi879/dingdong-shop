@@ -27,5 +27,15 @@ export const reqFloorList = () => {
   })
 }
 
+export const reqSearchInfo = (searchParams) => {
+  return mockAjax({
+    url: '/list',
+    method: 'post',
+    data:searchParams 
+    //searchParams 是用户搜索的参数，这个参数是用户再发请求的时候传递的，
+    //可以是空对象，但必须是个对象，空对象的时候代表商品默认搜索的数据
+  })
+}
+
 reqFloorList()
 reqBannerList()
